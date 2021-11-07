@@ -17,7 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AboutComponent } from './about/about.component';
+import { AboutComponent } from './views/about/about.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { NewReleasesComponent } from './views/new-releases/new-releases.component';
 import { AlbumComponent } from './views/album/album.component';
@@ -26,6 +26,16 @@ import { ArtistDiscographyComponent } from './views/artist-discography/artist-di
 @NgModule({
   declarations: [
     AppComponent,
+    AboutComponent,
+    NotFoundComponent,
+    NewReleasesComponent,
+    ArtistDiscographyComponent,
+    AlbumComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
     MatIconModule,
     MatSidenavModule,
     MatProgressBarModule,
@@ -38,13 +48,7 @@ import { ArtistDiscographyComponent } from './views/artist-discography/artist-di
     MatCardModule,
     MatChipsModule,
     FlexLayoutModule,
-    AboutComponent,
-    NotFoundComponent,
-    NewReleasesComponent,
-    AlbumComponent,
-    ArtistDiscographyComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
