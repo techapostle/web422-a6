@@ -46,7 +46,7 @@
           </mat-form-field>
         </div>
 
-        <a mat-list-item>
+        <a mat-list-item routerLink="/newReleases">
           <mat-icon mat-list-icon> library_music </mat-icon>
           <p mat-line>New Releases</p>
         </a>
@@ -58,7 +58,7 @@
 
         <mat-divider></mat-divider>
 
-        <a id="push-bottom" mat-list-item>
+        <a id="push-bottom" mat-list-item routerLink="/about">
           <mat-icon mat-list-icon> info_outline </mat-icon>
           <p mat-line>About</p>
         </a>
@@ -67,7 +67,7 @@
 
     <mat-sidenav-content class="sidenav-content">
       <!-- Main content -->
-      <app-new-releases></app-new-releases>
+      <router-outlet></router-outlet>
       <!-- ------------ -->
 
       <div class="bottom-spacer"></div>

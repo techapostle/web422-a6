@@ -15,11 +15,11 @@
           <mat-card-subtitle>New Release</mat-card-subtitle>
         </mat-card-header>
         <img
-          *ngFor="let image of release.images"
           mat-card-image
           class="album-cover"
-          [src]="image.url"
+          [src]="release.images[0].url"
           alt="album art"
+          routeLink="/album"
         />
         <strong>Release Date: </strong>{{ release.release_date }}<br />
         <strong>Tracks: </strong>{{ release.total_tracks }}<br /><br />
@@ -28,7 +28,7 @@
             aria-label="Artist selection"
             *ngFor="let artist of release.artists"
           >
-            <mat-chip>{{ artist.name }}</mat-chip>
+            <mat-chip routeLink="/artist">{{ artist.name }}</mat-chip>
           </mat-chip-list>
         </mat-card-content>
       </mat-card>

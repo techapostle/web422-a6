@@ -9,10 +9,11 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
-  { path: 'albums', component: AlbumComponent },
+  { path: 'album', component: AlbumComponent },
   { path: 'artist', component: ArtistDiscographyComponent },
-  { path: 'new-releases', component: NewReleasesComponent },
-  { path: 'not-found', component: NotFoundComponent },
+  { path: 'newReleases', component: NewReleasesComponent },
+  { path: 'notFound', component: NotFoundComponent },
+  { path: '', component: NewReleasesComponent },
 ];
 
 @NgModule({
