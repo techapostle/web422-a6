@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import albumData from '../data/SearchResultsAlbums.json';
 import artistData from '../data/SearchResultsArtist.json';
 
@@ -9,16 +10,9 @@ import artistData from '../data/SearchResultsArtist.json';
 })
 export class ArtistDiscographyComponent implements OnInit {
   albums = albumData;
-  artist: typeof artistData = artistData;
+  artist = artistData;
 
-  constructor() {
-    this.albums.tracks.items = albumData.tracks.items.filter(
-      (curValue, index, self) =>
-        self.findIndex(
-          (t) => t.name.toUpperCase() === curValue.name.toUpperCase()
-        ) === index
-    );
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {}
 }

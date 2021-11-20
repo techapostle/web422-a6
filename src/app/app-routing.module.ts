@@ -7,13 +7,15 @@ import { ArtistDiscographyComponent } from './views/artist-discography/artist-di
 import { NewReleasesComponent } from './views/new-releases/new-releases.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 
+// TODO: Make sure routes are properly working before implementing ass5: done \/
+
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
-  { path: 'album', component: AlbumComponent },
-  { path: 'artist', component: ArtistDiscographyComponent },
+  { path: 'album/:id', component: AlbumComponent },
+  { path: 'artist/:id', component: ArtistDiscographyComponent },
   { path: 'newReleases', component: NewReleasesComponent },
-  { path: 'notFound', component: NotFoundComponent },
-  { path: '', component: NewReleasesComponent },
+  { path: '', redirectTo: '/newReleases', pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

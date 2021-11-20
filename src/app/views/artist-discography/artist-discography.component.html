@@ -1,6 +1,9 @@
+<h1>{{ artist.name }}</h1>
+<p>Full discography for {{ artist.name }}</p>
+<p>Click the <strong>album cover</strong> for more information</p>
 <mat-card
   [style.background]="
-    'url(' + 'https://via.placeholder.com/640' + ') no-repeat center center'
+    'url(' + artist.images[0].url + ')' + 'no-repeat center center'
   "
   [style.background-size]="'cover'"
   [style.height]="'450px'"
@@ -11,17 +14,17 @@
 
 <div fxLayout="row wrap" fxLayout.xs="column">
   <!-- Single "Responsive" Card-->
-  <div fxFlex [style.margin]="'20px'" *ngFor="let item of albums.tracks.items">
-    <mat-card [style.min-width]="'200px'">
+  <div fxFlex [style.margin]="'20px'" *ngFor="let album of albums.items">
+    <mat-card [style.min-width]="'200px'" [routerLink]="['/album', album.id]">
       <mat-card-header>
-        <mat-card-title>Album Title</mat-card-title>
-        <mat-card-subtitle>PLACEHOLDER</mat-card-subtitle>
+        <mat-card-title>{{ album.name }}</mat-card-title>
+        <mat-card-subtitle>Album Title</mat-card-subtitle>
       </mat-card-header>
 
       <img
         mat-card-image
         class="album-cover"
-        [src]="albums.images[0].url"
+        [src]="album.images[1].url"
         alt="album art"
       />
       <strong>Release Date: </strong>2021/02/12<br />

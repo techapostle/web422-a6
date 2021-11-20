@@ -19,7 +19,7 @@
           class="album-cover"
           [src]="release.images[0].url"
           alt="album art"
-          routeLink="/album"
+          [routerLink]="['/album', release.id]"
         />
         <strong>Release Date: </strong>{{ release.release_date }}<br />
         <strong>Tracks: </strong>{{ release.total_tracks }}<br /><br />
@@ -28,11 +28,12 @@
             aria-label="Artist selection"
             *ngFor="let artist of release.artists"
           >
-            <mat-chip routeLink="/artist">{{ artist.name }}</mat-chip>
+            <mat-chip [routerLink]="['/artist/', artist.id]">{{
+              artist.name
+            }}</mat-chip>
           </mat-chip-list>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
-  }}
 </div>
