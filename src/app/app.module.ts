@@ -25,6 +25,8 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
 import { NewReleasesComponent } from './views/new-releases/new-releases.component';
 import { AlbumComponent } from './views/album/album.component';
 import { ArtistDiscographyComponent } from './views/artist-discography/artist-discography.component';
+import { SearchResultComponent } from './views/search-result/search-result.component';
+import { FavouritesComponent } from './views/favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { ArtistDiscographyComponent } from './views/artist-discography/artist-di
     NewReleasesComponent,
     ArtistDiscographyComponent,
     AlbumComponent,
+    SearchResultComponent,
+    FavouritesComponent,
   ],
   imports: [
     BrowserModule,

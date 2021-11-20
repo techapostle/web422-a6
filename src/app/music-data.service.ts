@@ -44,7 +44,7 @@ export class MusicDataService {
 
   searchArtists(searchString: String): Observable<any> {
     return this.getResources(
-      `https://api.spotify.com/v1/search/${searchString}/artist/50`
+      `https://api.spotify.com/v1/search?q=${searchString}&type=artist&limit=50`
     );
   }
 

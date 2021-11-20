@@ -41,7 +41,14 @@
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Artist</mat-label>
-            <input matInput type="text" />
+            <form (ngSubmit)="handleSearch()">
+              <input
+                matInput
+                type="text"
+                name="searchString"
+                [(ngModel)]="searchString"
+              />
+            </form>
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
         </div>
@@ -51,7 +58,7 @@
           <p mat-line>New Releases</p>
         </a>
 
-        <a mat-list-item>
+        <a mat-list-item routerLink="/favourites">
           <mat-icon mat-list-icon> favorite </mat-icon>
           <p mat-line>Favourites</p>
         </a>

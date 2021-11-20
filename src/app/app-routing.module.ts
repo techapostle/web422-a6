@@ -4,8 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './views/about/about.component';
 import { AlbumComponent } from './views/album/album.component';
 import { ArtistDiscographyComponent } from './views/artist-discography/artist-discography.component';
+import { FavouritesComponent } from './views/favourites/favourites.component';
 import { NewReleasesComponent } from './views/new-releases/new-releases.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
+import { SearchResultComponent } from './views/search-result/search-result.component';
 
 // TODO: Make sure routes are properly working before implementing ass5: done \/
 
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'album/:id', component: AlbumComponent },
   { path: 'artist/:id', component: ArtistDiscographyComponent },
   { path: 'newReleases', component: NewReleasesComponent },
+  { path: 'search', component: SearchResultComponent },
+  { path: 'favourites', component: FavouritesComponent },
   { path: '', redirectTo: '/newReleases', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
