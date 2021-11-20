@@ -1,16 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import albumData from '../data/SearchResultsAlbum.json';
+import { MusicDataService } from 'src/app/music-data.service';
 
 @Component({
   selector: 'app-album',
   templateUrl: './album.component.html',
   styleUrls: ['./album.component.css'],
 })
-export class AlbumComponent implements OnInit {
-  album = albumData;
+export class AlbumComponent implements OnInit, OnDestroy {
+  id: any;
+  album: any;
+  private albumSub: any;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private data: MusicDataService) {
+    this.id = this.route.snapshot.params['id'];
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.albumSub = this.data
+      .getAlbumById(this.id)
+      .subscribe((res) => (this.album = res));
+  }
+
+  ngOnDestroy(): void {
+    this.albumSub.unsubscribe();
+  }
 }

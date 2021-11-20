@@ -9,10 +9,11 @@ import { mergeMap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class MusicDataService {
+  public favouritesList: Array<any> = [];
+
   constructor(
     private spotifyToken: SpotifyTokenService,
-    private http: HttpClient,
-    public favouritesList: Array<any>
+    private http: HttpClient
   ) {}
 
   getResources(url: any): Observable<any> {
@@ -47,7 +48,7 @@ export class MusicDataService {
     );
   }
 
-  addToFavourites(id: String): Boolean {
+  addToFavourites(id: string): Boolean {
     if (id != null && this.favouritesList.length < 50) {
       this.favouritesList.push(id.valueOf);
       return true;
@@ -55,7 +56,7 @@ export class MusicDataService {
     return false;
   }
 
-  removeFromFavourites(id: String) {
+  removeFromFavourites(id: string) {
     this.favouritesList.splice(this.favouritesList.indexOf(id));
   }
 

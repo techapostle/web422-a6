@@ -2,13 +2,9 @@
 <p>Select an Album to view more information</p>
 
 <div class="content">
-  <div
-    fxLayout="row wrap"
-    fxLayout.xs="column"
-    *ngFor="let release of releases"
-  >
+  <div fxLayout="row wrap" fxLayout.xs="column">
     <!-- Single "Responsive" Card-->
-    <div fxFlex [style.margin]="'20px'">
+    <div fxFlex [style.margin]="'20px'" *ngFor="let release of releases.items">
       <mat-card [style.min-width]="'200px'">
         <mat-card-header>
           <mat-card-title>{{ release.name }}</mat-card-title>
