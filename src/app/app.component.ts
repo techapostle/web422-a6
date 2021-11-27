@@ -10,6 +10,7 @@
 
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchQuery } from './models/SearchQuery';
 
 @Component({
   selector: 'app-root',
@@ -19,14 +20,13 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'web422-a';
 
-  searchString: string = '';
+  searchQuery: SearchQuery = {} as SearchQuery;
 
   constructor(private router: Router) {}
 
   handleSearch(): any {
     this.router.navigate(['/search'], {
-      queryParams: { q: this.searchString },
+      queryParams: { q: this.searchQuery.searchString },
     });
-    this.searchString = '';
   }
 }
