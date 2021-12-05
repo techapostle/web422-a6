@@ -13,7 +13,9 @@
 
     <button mat-button [matMenuTriggerFor]="userMenu">
       <mat-icon>person</mat-icon>
-      <span fxShow fxHide.xs> Kian Dadkhah </span>
+      <li routerLink="/login" routerLinkActive="active">
+        <span fxShow fxHide.xs>Account</span>
+      </li>
     </button>
     <mat-menu
       #userMenu="matMenu"

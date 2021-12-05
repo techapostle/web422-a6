@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { SpotifyTokenService } from './spotify-token.service';
 
 import { mergeMap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -48,27 +49,43 @@ export class MusicDataService {
     );
   }
 
-  addToFavourites(id: string): Boolean {
-    if (id != null && this.favouritesList.length < 50) {
-      this.favouritesList.push(id.valueOf);
-      return true;
-    }
-    return false;
+  addToFavourites(id: string): Observable<[String]> {
+    return this.http.put<any>(`${environment.userAPIBase}/favourites/`, id);
   }
 
-  removeFromFavourites(id: string) {
-    this.favouritesList.splice(this.favouritesList.indexOf(id));
+  removeFromFavourites(id: string): Observable<any> {
+    return this.http
+      .delete<[String]>(`${environment.userAPIBase}/favourites/${id}`)
+      .pipe(
+        mergeMap((favouritesArray) => {
+          if (favouritesArray.length > 0) {
+            return this.getResources(
+              `https://api.spotify.com/v1/tracks/${favouritesArray.join()}`
+            );
+          } else {
+            return new Observable((o) => {
+              o.next([]);
+            });
+          }
+        })
+      );
   }
 
   getFavourites(): Observable<any> {
-    if (this.favouritesList.length > 0) {
-      return this.getResources(
-        `https://api.spotify.com/v1/tracks/${this.favouritesList.join()}`
+    return this.http
+      .get<[String]>(`${environment.userAPIBase}/favourites/`)
+      .pipe(
+        mergeMap((favouritesArray) => {
+          if (favouritesArray.length > 0) {
+            return this.getResources(
+              `https://api.spotify.com/v1/tracks/${favouritesArray.join()}`
+            );
+          } else {
+            return new Observable((o) => {
+              o.next([]);
+            });
+          }
+        })
       );
-    } else {
-      return new Observable((o) => {
-        o.next([]);
-      });
-    }
   }
 }

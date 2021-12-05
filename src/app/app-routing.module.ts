@@ -8,6 +8,8 @@ import { FavouritesComponent } from './views/favourites/favourites.component';
 import { NewReleasesComponent } from './views/new-releases/new-releases.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { SearchResultComponent } from './views/search-result/search-result.component';
+import { RegisterComponent } from './views/register/register.component';
+import { LoginComponent } from './views/login/login.component';
 
 // TODO: Make sure routes are properly working before implementing ass5: done \/
 
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'newReleases', component: NewReleasesComponent },
   { path: 'search', component: SearchResultComponent },
   { path: 'favourites', component: FavouritesComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/newReleases', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];

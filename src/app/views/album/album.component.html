@@ -2,7 +2,7 @@
   <mat-card-content fxLayout="row wrap" fxLayout.xs="column">
     <div fxflex>
       <img
-        [src]="album.images[0].url"
+        [src]="this.album.images[0].url"
         alt="album cover"
         [style.margin]="'10px'"
         [style.max-width]="'90%'"
@@ -34,17 +34,25 @@
 </mat-card>
 <br /><br />
 <h2>Track Listing</h2>
-
+<p>
+  Click on the <mat-icon mat-list-icon>queue_music</mat-icon> icon next to a
+  track to add it to your Favourites
+</p>
 <mat-list *ngFor="let track of album.tracks.items">
   <!-- Single "Responsive" Material List Item-->
   <mat-list-item>
-    <mat-icon mat-list-icon>queue_music</mat-icon>
+    <mat-icon mat-list-icon (click)="addToFavourites(track.id)"
+      >queue_music</mat-icon
+    >
     <div mat-line>
       <mat-card>
         <mat-card-content>
           <strong>{{ track.name }}</strong> -
           {{ (track.duration_ms / 60000).toFixed(2) }} minutes
           <!-- NOTE 3.34 was determined by using (duration_ms / 60000).toFixed(2) -->
+          <div *ngIf="track.preview_url">
+            <br /><audio controls [src]="track.preview_url"></audio>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>
