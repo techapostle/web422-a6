@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   clientID: '8964469453314d7fa49bce9d5e2680ec',
   clientSecret: 'fbcde636925f4623a301110962d4958a',
-  userAPIBase: 'https://kian-web422-userapi.herokuapp.com/api/user',
+  // userAPIBase: 'https://kian-web422-userapi.herokuapp.com/api/user',
+  userAPIBase: 'http://localhost:8080/api/user',
 };
 
 /*

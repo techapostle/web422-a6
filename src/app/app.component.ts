@@ -8,8 +8,9 @@
  *
  ********************************************************************************/
 
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationStart, Event, Router } from '@angular/router';
+import { AuthService } from './auth.service';
 import { SearchQuery } from './models/SearchQuery';
 
 @Component({
@@ -17,16 +18,30 @@ import { SearchQuery } from './models/SearchQuery';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'web422-a';
 
+  token: any;
   searchQuery: SearchQuery = {} as SearchQuery;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {}
+
+  ngOnInit(): void {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        this.token = this.auth.readToken();
+      }
+    });
+  }
 
   handleSearch(): any {
     this.router.navigate(['/search'], {
       queryParams: { q: this.searchQuery.searchString },
     });
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

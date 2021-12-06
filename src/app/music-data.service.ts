@@ -50,7 +50,10 @@ export class MusicDataService {
   }
 
   addToFavourites(id: string): Observable<[String]> {
-    return this.http.put<any>(`${environment.userAPIBase}/favourites/`, id);
+    return this.http.put<any>(
+      `${environment.userAPIBase}/favourites/${id}`,
+      this.favouritesList
+    );
   }
 
   removeFromFavourites(id: string): Observable<any> {
@@ -60,7 +63,7 @@ export class MusicDataService {
         mergeMap((favouritesArray) => {
           if (favouritesArray.length > 0) {
             return this.getResources(
-              `https://api.spotify.com/v1/tracks/${favouritesArray.join()}`
+              `https://api.spotify.com/v1/tracks?ids=${favouritesArray.join()}`
             );
           } else {
             return new Observable((o) => {
@@ -78,7 +81,7 @@ export class MusicDataService {
         mergeMap((favouritesArray) => {
           if (favouritesArray.length > 0) {
             return this.getResources(
-              `https://api.spotify.com/v1/tracks/${favouritesArray.join()}`
+              `https://api.spotify.com/v1/tracks?ids=${favouritesArray.join()}`
             );
           } else {
             return new Observable((o) => {

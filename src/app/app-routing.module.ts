@@ -10,17 +10,40 @@ import { NotFoundComponent } from './views/not-found/not-found.component';
 import { SearchResultComponent } from './views/search-result/search-result.component';
 import { RegisterComponent } from './views/register/register.component';
 import { LoginComponent } from './views/login/login.component';
-
-// TODO: Make sure routes are properly working before implementing ass5: done \/
+import { GuardAuthService } from './guard-auth.service';
 
 const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: 'album/:id', component: AlbumComponent },
-  { path: 'artist/:id', component: ArtistDiscographyComponent },
-  { path: 'newReleases', component: NewReleasesComponent },
-  { path: 'search', component: SearchResultComponent },
-  { path: 'favourites', component: FavouritesComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'about', component: AboutComponent, canActivate: [GuardAuthService] },
+  {
+    path: 'album/:id',
+    component: AlbumComponent,
+    canActivate: [GuardAuthService],
+  },
+  {
+    path: 'artist/:id',
+    component: ArtistDiscographyComponent,
+    canActivate: [GuardAuthService],
+  },
+  {
+    path: 'newReleases',
+    component: NewReleasesComponent,
+    canActivate: [GuardAuthService],
+  },
+  {
+    path: 'search',
+    component: SearchResultComponent,
+    canActivate: [GuardAuthService],
+  },
+  {
+    path: 'favourites',
+    component: FavouritesComponent,
+    canActivate: [GuardAuthService],
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [GuardAuthService],
+  },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/newReleases', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },

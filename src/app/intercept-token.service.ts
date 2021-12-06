@@ -18,11 +18,13 @@ export class InterceptTokenService implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    request = request.clone({
-      setHeaders: {
-        Authorization: `JWT ${this.auth.getToken()}`,
-      },
-    });
+    if (!request.url.includes('spotify.com')) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `JWT ${this.auth.getToken()}`,
+        },
+      });
+    }
     return next.handle(request);
   }
 }

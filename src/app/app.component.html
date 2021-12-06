@@ -1,20 +1,26 @@
 <div class="navbar-container">
   <!-- Top navbar -->
   <mat-toolbar class="navbar" color="primary">
-    <button mat-icon-button (click)="snav.toggle()">
+    <button *ngIf="token" mat-icon-button (click)="snav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
 
-    <a class="navbar-brand" matTooltip="Home">
+    <a class="navbar-brand" matTooltip="Home" routerLink="/">
       <h1>Seneca Music</h1>
     </a>
 
     <span class="navbar-spacer"></span>
 
     <button mat-button [matMenuTriggerFor]="userMenu">
-      <mat-icon>person</mat-icon>
-      <li routerLink="/login" routerLinkActive="active">
-        <span fxShow fxHide.xs>Account</span>
+      <mat-icon *ngIf="token">person</mat-icon>
+      <li
+        *ngIf="!token"
+        routerLink="/login"
+        routerLinkActive="active"
+        mat-menu-item
+      >
+        <span *ngIf="token" fxShow fxHide.xs>Account</span>
+        <span *ngIf="!token" fxShow fxHide.xs>Log In</span>
       </li>
     </button>
     <mat-menu
@@ -23,7 +29,7 @@
       yPosition="above"
       [overlapTrigger]="false"
     >
-      <a mat-menu-item>
+      <a *ngIf="token" (click)="logout()" mat-menu-item>
         <mat-icon>exit_to_app</mat-icon>
         <span>Log out</span>
       </a>
@@ -34,7 +40,7 @@
     <!-- Side nav -->
     <mat-sidenav
       #snav
-      [opened]="false"
+      [opened]="token && snav.opened"
       [mode]="'side'"
       [fixedInViewport]="true"
       fixedTopGap="56"

@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { MusicDataService } from 'src/app/music-data.service';
 
 @Component({
@@ -11,12 +10,32 @@ export class FavouritesComponent implements OnInit, OnDestroy {
   favourites: Array<any> = [];
   private favSub: any;
 
-  constructor(private route: ActivatedRoute, private data: MusicDataService) {}
+  constructor(private data: MusicDataService) {}
 
   ngOnInit(): void {
-    this.favSub = this.data
-      .getFavourites()
-      .subscribe((res) => (this.favourites = res));
+    this.getFavourites();
+  }
+
+  getFavourites(): void {
+    this.favSub = this.data.getFavourites().subscribe({
+      next: (data) => {
+        this.favourites = data.tracks;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  removeFromFavourites(id: any): void {
+    this.favSub = this.data.removeFromFavourites(id).subscribe({
+      next: (data) => {
+        this.favourites = data.tracks;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   ngOnDestroy(): void {

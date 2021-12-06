@@ -38,7 +38,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
           duration: 1500,
         });
       },
-      error: () => {
+      error: (err) => {
         this.snackBar.open('Unable to add song to Favourites', 'Error', {
           duration: 1500,
         });
