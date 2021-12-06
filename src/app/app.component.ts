@@ -4,8 +4,9 @@
  *  assignment has been copied manually or electronically from any other source (including web sites) or
  *  distributed to other students.
  *
- *  Name: Kian Dadkhah Shokrollahi Student ID: 119369205 Date: 2021-11-07
- *
+ *  Name: Kian Dadkhah Shokrollahi Student ID: 119369205 Date: 2021-12-03
+ *  Angular App (Deployed Link): https://kiansenecamusic.vercel.app/
+ *  User API (Heroku Link): https://kian-web422-userapi.herokuapp.com/
  ********************************************************************************/
 
 import { Component, OnInit } from '@angular/core';
