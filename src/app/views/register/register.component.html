@@ -2,7 +2,7 @@
   <mat-card-content>
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <h2>Register</h2>
-      <mat-error>{{ !this.success && this.warning }}</mat-error
+      <mat-error *ngIf="!this.success">{{ this.warning }}</mat-error
       ><br />
       <mat-form-field class="full-width-input">
         <input
@@ -43,8 +43,8 @@
       </button>
     </form>
   </mat-card-content>
-  <div class="success">
-    {{ this.success && "Registration Successful. Proceed to" }}<br /><br />
+  <div *ngIf="this.success" class="success">
+    Registration Successful. Proceed to<br /><br />
     <a mat-raised-button color="accent" routerLink="/login">
       <mat-icon>login</mat-icon>&nbsp;&nbsp;&nbsp;Login
     </a>

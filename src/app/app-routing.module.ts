@@ -42,7 +42,6 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [GuardAuthService],
   },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/newReleases', pathMatch: 'full' },
