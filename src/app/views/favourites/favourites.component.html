@@ -21,14 +21,14 @@
           Artist(s):
           <div *ngFor="let artist of track.artists">
             <span
-              ><a routerLink="/artist">{{ artist.name }}</a
+              ><a [routerLink]="['/artist', artist.id]">{{ artist.name }}</a
               >&nbsp;&nbsp;</span
             >
           </div>
 
           <br />
 
-          Album: <a routerLink="/album">{{ track.album.name }}</a
+          Album: <a [routerLink]="['/album', track.album.id]">{{ track.album.name }}</a
           ><br />
           <div><br /><audio controls [src]="track.preview_url"></audio></div>
         </mat-card-content>
